@@ -1,0 +1,10 @@
+需要引入 com/sun/net/httpserver/**
+HttpService 为启动类
+测试删除
+http://127.0.0.1:987/app/delete?userName=zss
+//测试创建
+http://127.0.0.1:987/app/create?userName=zss&pwd=123
+//测试登陆
+http://127.0.0.1:987/app/login?userName=zss&pwd=123
+//测试更新
+http://127.0.0.1:987/app/disable?userName=zss

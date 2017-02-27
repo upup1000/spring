@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<httpServer context="/app">  
+    <handler>  
+        <handler-class>leader.http.handler.impl.LoginHandler</handler-class>  
+        <url-pattern>/login</url-pattern>  
+    </handler>  
+    <handler>  
+        <handler-class>leader.http.handler.impl.CreateUserHandler</handler-class>  
+        <url-pattern>/create</url-pattern>  
+    </handler>
+    <handler>  
+        <handler-class>leader.http.handler.impl.DeleteUserHandler</handler-class>  
+        <url-pattern>/delete</url-pattern>  
+    </handler>
+    <handler>  
+        <handler-class>leader.http.handler.impl.DisableUserHandler</handler-class>  
+        <url-pattern>/disable</url-pattern>  
+    </handler>
+</httpServer>
