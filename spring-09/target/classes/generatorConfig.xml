@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="D:\work\workspace\game-lib\lib\mysql-connector-java-5.1.8-bin.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+			<property name="javaFileEncoding" value="UTF-8" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.251:3306/spring_test" userId="root"
+			password="root123">
+		</jdbcConnection>
+		<javaTypeResolver>
+		  <property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="edu.ldcollege.domain"
+			targetProject="D:\javaTools\ahjysrc\spring-09\src\main\java" />
+		<javaClientGenerator targetPackage="edu.ldcollege.mapping"
+			type="ANNOTATEDMAPPER" targetProject="D:\javaTools\ahjysrc\spring-09\src\main\java"></javaClientGenerator>
+		<table tableName="ld_homework" domainObjectName="LdHomeWork"></table>
+		<table tableName="ld_homeworkfb" domainObjectName="LdHomeWorkFB"></table>
+		<table tableName="user" domainObjectName="LdUser"></table>
+	</context>
+</generatorConfiguration>

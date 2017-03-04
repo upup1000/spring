@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>登录课程</title>
+   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+   <link rel='stylesheet' href='css/jquery-ui.css'>
+   <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+</head>
+<body>
+<body class="login-page">
+<div class="login-form">
+		<div class="login-content">
+			<div class="form-login-error">
+				<h3>登录</h3>
+			</div>
+			<form method="get" role="form" id="form_login" action="/loginsys">
+			     <div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-user"></i>
+						</div>
+						 <select name="classId" class="form-control">
+			                <option value="1" >全栈课程</option>
+			                <option value="2" >中间课程</option>
+		                </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-user"></i>
+						</div>
+						 <select name="lessonId" class="form-control">
+			                <option value="1" >一期</option>
+			                <option value="2" >二期</option>
+		                </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-user"></i>
+						</div>
+						<input type="text" class="form-control" name="uname" id="uname" placeholder="Username" autocomplete="off" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-key"></i>
+						</div>
+						<input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" autocomplete="off" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block btn-login">
+						<i class="fa fa-sign-in"></i>
+						Login In
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+ </div>
+</body>
+
+</html>

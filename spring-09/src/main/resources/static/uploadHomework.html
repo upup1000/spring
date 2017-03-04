@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>上传</title>
+    <link rel='stylesheet' href='css/jquery-ui.css'>
+   <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+      <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+   <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+      <script src="uploadHomework.js"></script>
+</head>
+<body>
+<div class="login-form">
+		<div class="login-content">
+			<div class="form-login-error">
+				<h3>上传作业</h3>
+			</div>
+			<form role="form" method="post" id="uploadForm1" enctype="multipart/form-data" action="/upload">
+			     <div class="form-group">
+                 <label class="sr-only" for="name">名称</label>
+                 <input type="text" class="form-control" name="homework" id="homework" required>
+                 </div>
+                <div class="form-group">
+               <label class="sr-only" for="inputfile">文件输入</label>
+                 <input type="file" accept="pdf"  name="uploadfile" id="uploadfile" required>
+                </div>
+                <div class="form-group">
+					<button type="button" onclick="sumbit()" class="btn btn-primary btn-block btn-login"><i class="fa fa-sign-in"></i>
+					 上传文件
+					</button>
+				</div>
+            </form>
+		</div>
+	</div>
+</body>
+</html>
