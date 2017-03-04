@@ -1,0 +1,44 @@
+./startup.sh && tail -f ../logs/catalina.out 
+
+登录提审服务器mysql
+
+mysql -usaintdbcon -p87ohB07jG7 -h10.10.130.132 heeking_account_apple < heeking_account.sql 
+
+tar -zxvf gameserver.tar.gz
+rm -rf /data/heeking/tomcat-apple/webapps/gameserver*
+
+//gm平台 
+mysql --default-character-set=utf8   -usaintdbcon -p87ohB07jG7 -h10.10.42.249 
+
+
+//版署
+mysql --default-character-set=utf8   -usaintdbcon -p87ohB07jG7 -h10.10.166.161
+//腾讯外网
+scp -p22 -r /usr/local/zss/sql/heeking_gamedata.sql root@115.159.147.94:/tmp/
+
+scp -i shishan.zhao@123.59.140.158 
+ssh -i /usr/local/zss/zss shishan.zhao@123.59.62.221
+
+svn --username=svn_saintkill --password=j71zxq39n0 checkout svn://106.75.6.66/saintkill/server/jdk1.8/ /home/shishan.zhao/
+rsync -az 10.10.107.249::update_saintkill/jdk1.8/install_jdk.sh /home/shishan.zhao/
+
+yum -y install subversion
+
+./shutdown_update.sh 10.10.109.144 1 0 0 0
+
+scp -i /usr/local/zss/zss -r /usr/local/zss/updateserver/gameserver.tar.gz  shishan.zhao@123.59.140.158:/data/server/
+//白名单和开服日期 
+./loginwritelist.sh 10.10.109.144 1 '2016-05-05 00:25:01'
+//关闭白名单登录
+./loginwritelist.sh 10.10.109.144 0 '2016-05-05 00:25:01'
+//正式服
+mysql -usaintdbcon -p87ohB07jG7 -h10.10.109.144
+//充值服务器 
+mysql -usaintdbcon -p87ohB07jG7 -h10.10.220.209
+//盖亚测试服
+mysql -usaintdbcon -p87ohB07jG7 -h10.10.5.108
+
+盖亚测试
+/data/server/update_process.sh 10.10.5.108
+正式服务器
+/data/server/update_process.sh 10.10.109.144

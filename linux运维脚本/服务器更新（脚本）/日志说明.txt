@@ -1,0 +1,22 @@
+/data/log/gdata/coin  虚拟货币 金币 钻石 公会贡献值 /data/log/gdata/task 任务
+n	/data/log/gdata/itemGain 物品获得
+n	/data/log/gdata/itemConsume 物品消耗
+n	/data/log/gdata/shop 商城购买
+n	/data/log/gdata/instance 关卡
+n	/data/log/gdata/roleUpGrade 角色升级
+n	/data/log/gdata/mercenGain 佣兵获得
+n	/data/log/gdata/mercenConsume  佣兵消耗
+n	/data/log/gdata/mercenUpGrade 佣兵升星
+n	/data/log/gdata/mercenUpLevel 佣兵升级
+n	/data/log/gdata/equipStrength 装备强化
+n	/data/log/gdata/shilian 试炼 ：记录波数
+n	/data/log/gdata/skillCommon  主动技能 角色
+n	/data/log/gdata/skillPassive 被动技能
+n	/data/log/gdata/skillTurned 技能 灵魂双生
+n	/data/log/gdata/roleTurnedLevel 灵魂双生
+n	/data/log/gdata/mishiRoom 密室 层数
+n	/data/log/gdata/mishiDice 密室 打色子
+n	/data/log/gdata/pvp pvp 1v1 竞技场  精力消耗
+n	/data/log/gdata/spConsume  sp消耗
+n	/data/log/gdata/spGain sp获得
+n	/data/log/gdata/skillMercen 佣兵技能升级
