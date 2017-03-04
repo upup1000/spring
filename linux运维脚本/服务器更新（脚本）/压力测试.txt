@@ -1,4 +1,0 @@
-nohup java -jar GameRobotV1_fat.jar 10.10.76.98 5000 1000 10&
-nohup java -jar GameRobotV1_fat.jar 10.10.76.98 5000 6000 10&
-mysqldump --opt -d -usaintdbcon -p87ohB07jG7 -h10.10.68.40 heeking_role>role.sql
-mysql -usaintdbcon -p87ohB07jG7 -h10.10.68.40 heeking_role< role.sql
