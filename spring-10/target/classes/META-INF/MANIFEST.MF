@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-10
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 44
+Implementation-Vendor-Id: spring-10
+Build-Jdk: 1.8.0_73
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

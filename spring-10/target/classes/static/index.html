@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>登录课程</title>
+   <link rel='stylesheet' href='css/jquery-ui.css'>
+   <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+   <script src="js/jquery.js"></script>
+  <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+   <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+   <script src="index.js"></script>
+</head>
+<body>
+<body class="login-page">
+<div class="login-form">
+		<div class="login-content">
+			<div class="form-login-error">
+				<h3>登录</h3>
+			</div>
+			<form action="/login" method="post" class="form-horizontal">
+							<div class="input-group input-sm">
+								<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+								<input type="text" class="form-control" id="username" name="ssoId" placeholder="Enter Username" required>
+							</div>
+							<div class="input-group input-sm">
+								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+							</div>
+                            <div class="input-group input-sm">
+                              <div class="checkbox">
+                                <label><input type="checkbox" id="rememberme" name="remember-me"> Remember Me</label>  
+                              </div>
+							</div>
+							<div class="form-actions">
+								<input type="submit"
+									class="btn btn-block btn-primary btn-default" value="Log in">
+							</div>
+						</form>
+		</div>
+	</div>
+ </div>
+</body>
+
+</html>

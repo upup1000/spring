@@ -1,0 +1,3 @@
+leader=123456,ROLE_ADMIN,op_createuser,enabled
+test1=123456,ROLE_MANAGER,op_createuser,enabled
+test2=123456,ROLE_MANAGER,enabled
