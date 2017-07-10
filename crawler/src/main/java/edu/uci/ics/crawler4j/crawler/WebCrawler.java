@@ -42,7 +42,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 
 /**
  * WebCrawler class in the Runnable class that is executed by each crawler thread.
- *
+ * 每个爬虫线程执行这里的run方法。
  * @author Yasser Ganjisaffar
  */
 public class WebCrawler implements Runnable {
@@ -50,7 +50,8 @@ public class WebCrawler implements Runnable {
     protected static final Logger logger = LoggerFactory.getLogger(WebCrawler.class);
 
     /**
-     * The id associated to the crawler thread running this instance
+     * The id associated to the crawler thread running this instance。
+     * 相应的爬虫线程id。
      */
     protected int myId;
 
@@ -58,6 +59,7 @@ public class WebCrawler implements Runnable {
      * The controller instance that has created this crawler thread. This
      * reference to the controller can be used for getting configurations of the
      * current crawl or adding new seeds during runtime.
+     * 创建爬虫实例的controller实例。可以从这个指针上获取爬取配置，还可以在运行时添加新的url种子
      */
     protected CrawlController myController;
 
@@ -68,27 +70,32 @@ public class WebCrawler implements Runnable {
 
     /**
      * The parser that is used by this crawler instance to parse the content of the fetched pages.
+     * 页面内容解析器
      */
     private Parser parser;
 
     /**
      * The fetcher that is used by this crawler instance to fetch the content of pages from the web.
+     * 页面内容抓取器
      */
     private PageFetcher pageFetcher;
 
     /**
      * The RobotstxtServer instance that is used by this crawler instance to
      * determine whether the crawler is allowed to crawl the content of each page.
+     * 根据站点robot协议，判定一个页面是否允许抓取
      */
     private RobotstxtServer robotstxtServer;
 
     /**
      * The DocIDServer that is used by this crawler instance to map each URL to a unique docid.
+     * 映射每个url到一个唯一的docid
      */
     private DocIDServer docIdServer;
 
     /**
      * The Frontier object that manages the crawl queue.
+     * 待开发的url管理器
      */
     private Frontier frontier;
 
@@ -97,6 +104,7 @@ public class WebCrawler implements Runnable {
      * mainly used by the controller to detect whether all of the crawler
      * instances are waiting for new URLs and therefore there is no more work
      * and crawling can be stopped.
+     * 是否等待新的url。这个变量主要用来决定是不是没有url可爬取，整个爬取工作是不是可以停止了。
      */
     private boolean isWaitingForNewURLs;
 
@@ -139,6 +147,7 @@ public class WebCrawler implements Runnable {
      * This function is called just before starting the crawl by this crawler
      * instance. It can be used for setting up the data structures or
      * initializations needed by this crawler instance.
+     * 在爬取之前调用，用来建立数据结构，或其他必要的初始化
      */
     public void onStart() {
         // Do nothing by default
@@ -149,6 +158,7 @@ public class WebCrawler implements Runnable {
      * This function is called just before the termination of the current
      * crawler instance. It can be used for persisting in-memory data or other
      * finalization tasks.
+     * 终止之前，保存内存数据
      */
     public void onBeforeExit() {
         // Do nothing by default
@@ -159,7 +169,8 @@ public class WebCrawler implements Runnable {
      * This function is called once the header of a page is fetched. It can be
      * overridden by sub-classes to perform custom logic for different status
      * codes. For example, 404 pages can be logged, etc.
-     *
+     * 每次抓取到页面的头部都会调用，子类重写来执行不同状态码的自定义逻辑。比如log一下404的url
+     * 
      * @param webUrl WebUrl containing the statusCode
      * @param statusCode Html Status Code number
      * @param statusDescription Html Status COde description
@@ -173,7 +184,7 @@ public class WebCrawler implements Runnable {
      * This function is called before processing of the page's URL
      * It can be overridden by subclasses for tweaking of the url before processing it.
      * For example, http://abc.com/def?a=123 - http://abc.com/def
-     *
+     * 处理页面url之前调用，子类重写可以稍稍变动一下url。比如增加查询参数或者去掉
      * @param curURL current URL which can be tweaked before processing
      * @return tweaked WebURL
      */
@@ -183,7 +194,7 @@ public class WebCrawler implements Runnable {
 
     /**
      * This function is called if the content of a url is bigger than allowed size.
-     *
+     * 如果页面内容有点过大，怎么版
      * @param urlStr - The URL which it's content is bigger than allowed size
      */
     protected void onPageBiggerThanMaxSize(String urlStr, long pageSize) {
@@ -193,7 +204,7 @@ public class WebCrawler implements Runnable {
 
     /**
      * This function is called if the crawler encounters a page with a 3xx status code
-     *
+     * 遇到3xx重定向怎么办
      * @param page Partial page object
      */
     protected void onRedirectedStatusCode(Page page) {
@@ -203,7 +214,7 @@ public class WebCrawler implements Runnable {
     /**
      * This function is called if the crawler encountered an unexpected http status code ( a
      * status code other than 3xx)
-     *
+     * 未知状态马怎么办
      * @param urlStr URL in which an unexpected error was encountered while crawling
      * @param statusCode Html StatusCode
      * @param contentType Type of Content
@@ -219,7 +230,7 @@ public class WebCrawler implements Runnable {
 
     /**
      * This function is called if the content of a url could not be fetched.
-     *
+     * url不能抓取怎么办
      * @param webUrl URL which content failed to be fetched
      */
     protected void onContentFetchError(WebURL webUrl) {
@@ -230,7 +241,7 @@ public class WebCrawler implements Runnable {
 
     /**
      * This function is called when a unhandled exception was encountered during fetching
-     *
+     * 抓取过程中有未曾捕获的异常怎么办
      * @param webUrl URL where a unhandled exception occured
      */
     protected void onUnhandledException(WebURL webUrl, Throwable e) {
@@ -243,7 +254,7 @@ public class WebCrawler implements Runnable {
 
     /**
      * This function is called if there has been an error in parsing the content.
-     *
+     * 解析过程中出现错误
      * @param webUrl URL which failed on parsing
      */
     protected void onParseError(WebURL webUrl) {
@@ -258,7 +269,7 @@ public class WebCrawler implements Runnable {
      * that extend WebCrawler can override this function to pass their local
      * data to their controller. The controller then puts these local data in a
      * List that can then be used for processing the local data of crawlers (if needed).
-     *
+     * 爬取终止前CrawlController调用这个函数获取当前爬虫的数据，有必要可以重写并处理controller的数据总和
      * @return currently NULL
      */
     public Object getMyLocalData() {
@@ -273,6 +284,7 @@ public class WebCrawler implements Runnable {
             isWaitingForNewURLs = true;
             frontier.getNextURLs(50, assignedURLs);
             isWaitingForNewURLs = false;
+            
             if (assignedURLs.isEmpty()) {
                 if (frontier.isFinished()) {
                     return;
@@ -303,7 +315,7 @@ public class WebCrawler implements Runnable {
      * crawler whether the given url should be crawled or not. The following
      * default implementation indicates that all urls should be included in the crawl
      * except those with a nofollow flag.
-     *
+     * 给定的url是否可以抓取
      * @param url
      *            the url which we are interested to know whether it should be
      *            included in the crawl or not.
@@ -331,12 +343,12 @@ public class WebCrawler implements Runnable {
      * By default this method returns true always, but classes that extend WebCrawler can
      * override it in order to implement particular policies about which pages should be
      * mined for outgoing links and which should not.
-     *
+     * 给定页面的连接是否允许被添加到url队列来爬取
      * If links from the URL are not being followed, then we are not operating as
      * a web crawler and need not check robots.txt before fetching the single URL.
      * (see definition at http://www.robotstxt.org/faq/what.html).  Thus URLs that
      * return false from this method will not be subject to robots.txt filtering.
-     *
+     * 如果不允许页面的连接被爬取，在抓取这个url前不会检查robots协议
      * @param url the URL of the page under consideration
      * @return true if outgoing links from this page should be added to the queue.
      */

@@ -8,10 +8,77 @@ http://hao.jobbole.com/crawler4j/
 对临时存储的实现
 设计结构
 对恢复爬取的处理
-对url唯一识别的处理
+对url唯一识别的处理:webcrawler类有一个docidserver来唯一化每个url
 对cookie的处理
 ///////////////////////////
 crawlerController开始爬虫
     每个爬虫实例配合一个线程，爬虫同时工作
     多个爬虫共享抓取临时存储等算法，但每个爬虫有自己的解析对象
+
+    用一个监控线程来监控爬取的完成情况，在完成之前该线程挂起阻塞。
+    当线程都在等待新url，也就是url队列里没有为爬取的url可以，监控线程可以停止了程序了
+    url存储停止工作，爬虫实例，准备退出，文档服务关闭，抓取服务关闭
+
+webcrawler类可以重写的函数
+    onstart                                      线程启动初始，为抓取之前。建立数据结构
+    loop true
+        take 50 url from frontier
+        
+        if no url from frontier AND frontier.isFinished
+            return
+        
+        
+        currentURL=handleUrlBeforeProcess currentURL                    处理页面url之前调用，子类重写可以稍稍变动一下url。比如增加查询参数或者去掉
+        pageResult=fetchPageFrom currentURL
+        handlePageStatusCode                     每次抓取到页面的头部都会调用，子类重写来执行不同状态码的自定义逻辑。比如log一下404的url
+        if it is redirectSatusCode
+            onRedirectedStatusCode               遇到3xx的重定向怎么办
+            if CrawlController allows crawl new url
+                add new url to frontier
+        if status code is note 2xx AND not 3xx
+            onUnexpectedStatusCode
+        
+        following logic is based on 200
+        parser.parse(page, curURL.getURL());
+        
+        if shouldFollowLinksIn                    给定页面的连接是否允许被添加到url队列来爬取
+            loop url in currentURL.outgoingLinks
+                if shouldVisit url                给定的url是否应该被抓取
+                    add url to frontier
+                
+            
+        visit page                                重写来处理抓取的页面
+        catch (PageBiggerThanMaxSizeException e) {
+            onPageBiggerThanMaxSize(curURL.getURL(), e.getPageSize());
+            onPageBiggerThanMaxSize               如果页面内容有点过大，怎么版
+        } 
+        catch (ParseException pe) {
+            onParseError(curURL);
+            onParseError                          解析过程出现错误
+        } 
+        catch (ContentFetchException cfe) {
+            onContentFetchError(curURL);
+            onContentFetchError                   url不能抓取怎么办
+        } 
+        catch (NotAllowedContentException nace) {
+            logger.debug( "Skipping: {} as it contains binary content which you configured not to crawl", curURL.getURL());
+        } 
+        catch (Exception e) {
+            onUnhandledException(curURL, e);
+            onUnhandledException                  抓取过程中出现异常
+        } 
+        finally {
+            if (fetchResult != null) {
+                fetchResult.discardContentIfNotConsumed();
+            }
+        }
+            
+
+        frontier.processed currentURL
+    end loop
+
+
+
+    onbeforeexit   退出之前。保存内存中的数据
+    getMyLocalData       爬取终止前CrawlController调用这个函数获取当前爬虫的数据，有必要可以重写并处理controller的数据总和
 
