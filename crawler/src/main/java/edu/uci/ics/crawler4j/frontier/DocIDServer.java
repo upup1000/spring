@@ -32,6 +32,7 @@ import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.util.Util;
 
 /**
+ * 利用dbd嵌入式kv数据库实现url的唯一性。url在库中url的id就是行号。
  * @author Yasser Ganjisaffar
  */
 
@@ -47,12 +48,14 @@ public class DocIDServer extends Configurable {
 
     public DocIDServer(Environment env, CrawlConfig config) {
         super(config);
+        
         DatabaseConfig dbConfig = new DatabaseConfig();
         dbConfig.setAllowCreate(true);
         dbConfig.setTransactional(config.isResumableCrawling());
         dbConfig.setDeferredWrite(!config.isResumableCrawling());
-        lastDocID = 0;
         docIDsDB = env.openDatabase(null, DATABASE_NAME, dbConfig);
+        
+        lastDocID = 0;
         if (config.isResumableCrawling()) {
             int docCount = getDocCount();
             if (docCount > 0) {
@@ -64,7 +67,7 @@ public class DocIDServer extends Configurable {
 
     /**
      * Returns the docid of an already seen url.
-     *
+     * 不存在返回-1，存在返回一个正数
      * @param url the URL for which the docid is returned.
      * @return the docid of the url if it is seen before. Otherwise -1 is returned.
      */
@@ -89,6 +92,11 @@ public class DocIDServer extends Configurable {
         }
     }
 
+    /**
+     * 把url加入数据库，返回行编号作为id
+     * @param url
+     * @return
+     */
     public int getNewDocID(String url) {
         synchronized (mutex) {
             try {

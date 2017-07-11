@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
  * The UserAgentDirectives class stores the configuration for a single
  * user agent as defined in the robots.txt. The user agent string used
  * depends on the most recent User-agent: definition in the robots.txt file.
+ *
  */
 public class UserAgentDirectives {
     public static final Logger logger = LoggerFactory.getLogger(UserAgentDirectives.class);

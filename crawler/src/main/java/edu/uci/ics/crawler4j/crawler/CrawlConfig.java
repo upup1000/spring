@@ -73,6 +73,7 @@ public class CrawlConfig {
 
     /**
      * Should we also crawl https pages?
+     * 是否爬取https协议
      */
     private boolean includeHttpsPages = true;
 

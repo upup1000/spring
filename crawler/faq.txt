@@ -3,12 +3,26 @@ http://hao.jobbole.com/crawler4j/
 为页面建立索引
 存储索引
 
-对状态码的处理
+设计结构
+CrawlerController
+	counter
+	frontier
+	docidserver
+	threads[]={webcrawler,webcrawler,webcrawler,webcrawler};
+	loop threads:
+		if no more url 
+			stop crawing sesstion
+		
+		threads[i].process new page
+	end loop
+webcrawler
+	fetcher
+	parser
+对状态码的处理    :   200 normal process;300 redirect;other callback
 对字符编码的处理
 对临时存储的实现
-设计结构
 对恢复爬取的处理
-对url唯一识别的处理:webcrawler类有一个docidserver来唯一化每个url
+对url唯一识别的处理:  利用dbd嵌入式kv数据库实现url的唯一性。url在库中url的id就是行号。
 对cookie的处理
 ///////////////////////////
 crawlerController开始爬虫

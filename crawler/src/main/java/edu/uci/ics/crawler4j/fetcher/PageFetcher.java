@@ -71,6 +71,7 @@ import edu.uci.ics.crawler4j.url.URLCanonicalizer;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 /**
+ * 抓取器
  * @author Yasser Ganjisaffar
  */
 public class PageFetcher extends Configurable {

@@ -39,7 +39,7 @@ import edu.uci.ics.crawler4j.util.IO;
 /**
  * The controller that manages a crawling session. This class creates the
  * crawler threads and monitors their progress.
- *
+ * controller 管理一个爬取会话，创建爬虫线程并监控他们的进展。
  * @author Yasser Ganjisaffar
  */
 public class CrawlController extends Configurable {
@@ -49,23 +49,27 @@ public class CrawlController extends Configurable {
     /**
      * The 'customData' object can be used for passing custom crawl-related
      * configurations to different components of the crawler.
+     * 传递自定义的相关数据到爬虫不同的组件
      */
     protected Object customData;
 
     /**
      * Once the crawling session finishes the controller collects the local data
      * of the crawler threads and stores them in this List.
+     * 当爬取会话结束，controller收集每个爬虫的本地数据
      */
     protected List<Object> crawlersLocalData = new ArrayList<>();
 
     /**
      * Is the crawling of this session finished?
+     * 本次爬取会话是否结束
      */
     protected boolean finished;
 
     /**
      * Is the crawling session set to 'shutdown'. Crawler threads monitor this
      * flag and when it is set they will no longer process new pages.
+     * 当这个变量被设置，爬虫线程会停止爬取新页面
      */
     protected boolean shuttingDown;
 

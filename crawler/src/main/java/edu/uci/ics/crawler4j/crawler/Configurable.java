@@ -20,7 +20,7 @@ package edu.uci.ics.crawler4j.crawler;
 /**
  * Several core components of crawler4j extend this class
  * to make them configurable.
- *
+ * crawler的核心组件都要继承此类，保证可配置
  * @author Yasser Ganjisaffar
  */
 public abstract class Configurable {

@@ -1,10 +1,13 @@
 package net.practice.se.crawler;
 
+import org.apache.http.client.config.CookieSpecs;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
+import edu.uci.ics.crawler4j.robotstxt.UserAgentDirectives.UserAgentComparator;
 
 public class Controller {
     public static void main(String[] args) throws Exception {
@@ -15,6 +18,7 @@ public class Controller {
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setMaxPagesToFetch(100);
         config.setMaxDepthOfCrawling(4);
+        config.setCookiePolicy(CookieSpecs.STANDARD_STRICT);
 
         /*
          * Instantiate the controller for this crawl.

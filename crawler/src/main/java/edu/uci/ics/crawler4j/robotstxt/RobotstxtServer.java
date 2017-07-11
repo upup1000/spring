@@ -36,6 +36,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import edu.uci.ics.crawler4j.util.Util;
 
 /**
+ * 站点robot协议的缓存。
  * @author Yasser Ganjisaffar
  */
 public class RobotstxtServer {
@@ -64,7 +65,10 @@ public class RobotstxtServer {
         return url.getHost().toLowerCase();
     }
 
-    /** Please note that in the case of a bad URL, TRUE will be returned */
+    /** 
+     * Please note that in the case of a bad URL, TRUE will be returned 
+     * 注意坏url的情况，总是返回true
+     * */
     public boolean allows(WebURL webURL) {
         if (!config.isEnabled()) {
             return true;
@@ -136,10 +140,8 @@ public class RobotstxtServer {
                         content = new String(page.getContentData(), page.getContentCharset());
                     }
                     directives = RobotstxtParser.parse(content, config);
-                } else if (page.getContentType()
-                               .contains(
-                                   "html")) { // TODO This one should be upgraded to remove all
-                    // html tags
+                } else if (page.getContentType().contains("html")) { 
+                	// TODO This one should be upgraded to remove all html tags
                     String content = new String(page.getContentData());
                     directives = RobotstxtParser.parse(content, config);
                 } else {

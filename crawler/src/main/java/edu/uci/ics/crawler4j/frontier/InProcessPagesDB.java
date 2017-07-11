@@ -32,7 +32,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
  * This class maintains the list of pages which are
  * assigned to crawlers but are not yet processed.
  * It is used for resuming a previous crawl.
- *
+ * 维护一个页面列表，页面还没有处理，用来当爬虫意外关闭后恢复爬取用的。
  * @author Yasser Ganjisaffar
  */
 public class InProcessPagesDB extends WorkQueues {

@@ -30,6 +30,7 @@ import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 /**
+ *  待开发的url管理器
  * @author Yasser Ganjisaffar
  */
 
@@ -54,6 +55,7 @@ public class Frontier extends Configurable {
     public Frontier(Environment env, CrawlConfig config) {
         super(config);
         this.counters = new Counters(env, config);
+        
         try {
             workQueues = new WorkQueues(env, DATABASE_NAME, config.isResumableCrawling());
             if (config.isResumableCrawling()) {
